@@ -14,6 +14,7 @@ function Index() {
   const [thirdData, setThirdData] = useState("");
   const [fourthData, setFourthData] = useState("");
   const [loading, setLoading] = useState("");
+
   const getData = () => {
     db1.on("value", function (snapshot) {
       setData(snapshot.val());
@@ -39,6 +40,12 @@ function Index() {
   console.log("second data", secondData);
   console.log("third data", thirdData);
   console.log("fourth data", fourthData);
+
+  const deleteData = () =>{
+    //const ref = firebase.db1.database().ref("DB_1/Sutartis").child(sutartis.index);
+    //ref.remove();
+
+  };
   return (
         <AppContainer>
           <BtnDiv>
@@ -64,7 +71,7 @@ function Index() {
                       <td>{sutartis.nuomos_pabaiga}</td>
                       <td>{sutartis.uzsakovo_id}</td>
                       <td>
-                        <Button backgroundColor="#D7D134">
+                        <Button backgroundColor="#D7D134" onClick={deleteData}>
                           {" "}
                           <ButtonLabel>Redaguoti</ButtonLabel>{" "}
                         </Button>
