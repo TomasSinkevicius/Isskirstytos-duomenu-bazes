@@ -1,15 +1,8 @@
-import "./App.css";
 import firebase from "./firebase";
 import { useState, useEffect } from "react";
-import styled from "styled-components";
-
-const Row = styled.div`
-  display: flex;
-  justify-content: space-between;
-  table {
-    margin-right: 10px;
-  }
-`;
+import { Row, Table, TR } from "./Components/StyleFiles/Table.style";
+import { Button, ButtonLabel } from "./Components/StyleFiles/Button.style";
+import { AppContainer, BtnDiv } from "./Components/StyleFiles/Container.style";
 
 function App() {
   const db1 = firebase.db1.database().ref("/DB_1");
@@ -47,115 +40,157 @@ function App() {
   console.log("third data", thirdData);
   console.log("fourth data", fourthData);
   return (
-    <div className="App">
+    <AppContainer>
+      <BtnDiv>
+        <Button backgroundColor="#3EA5A2">
+          <ButtonLabel>Prideti</ButtonLabel>
+        </Button>
+      </BtnDiv>
       <Row>
         <div>
           <h4>Sutartis db1</h4>
-          <table>
-            <tr>
+          <Table>
+            <TR>
               <th>Id</th>
               <th>Kaina</th>
               <th>Nuomos pabaiga</th>
               <th>Uzsakovo id</th>
-            </tr>
+              <th></th>
+              <th></th>
+            </TR>
             {data &&
               data.Sutartis.map((sutartis, index) => (
-                <tr>
+                <TR>
                   <td>{index}</td>
                   <td>{sutartis.kaina}</td>
                   <td>{sutartis.nuomos_pabaiga}</td>
                   <td>{sutartis.uzsakovo_id}</td>
-                </tr>
+                  <td>
+                    <Button backgroundColor="#D7D134">
+                      {" "}
+                      <ButtonLabel>Redaguoti</ButtonLabel>{" "}
+                    </Button>
+                  </td>
+                  <td>
+                    <Button backgroundColor="red">
+                      {" "}
+                      <ButtonLabel>Trinti</ButtonLabel>{" "}
+                    </Button>
+                  </td>
+                </TR>
               ))}
-          </table>
+          </Table>
         </div>
         <div>
           <h4>Sutartis db2</h4>
-          <table>
-            <tr>
+          <Table>
+            <TR>
               <th>Id</th>
               <th>Data</th>
               <th>Kaina</th>
               <th>Nuomos pradzia</th>
               <th>Nuomos pabaiga</th>
-            </tr>
+              <th></th>
+              <th></th>
+            </TR>
             {secondData &&
               secondData.Sutartis.map((sutartis, index) => (
-                <tr>
+                <TR>
                   <td>{index}</td>
                   <td>{sutartis.data}</td>
                   <td>{sutartis.kaina}</td>
                   <td>{sutartis.nuomos_pradzia}</td>
                   <td>{sutartis.nuomos_pabaiga}</td>
-                </tr>
+                  <td>
+                    <Button backgroundColor="#D7D134">
+                      {" "}
+                      <ButtonLabel>Redaguoti</ButtonLabel>{" "}
+                    </Button>
+                  </td>
+                  <td>
+                    <Button backgroundColor="red">
+                      {" "}
+                      <ButtonLabel>Trinti</ButtonLabel>{" "}
+                    </Button>
+                  </td>
+                </TR>
               ))}
-          </table>
+          </Table>
         </div>
+      </Row>
+      <Row>
         <div>
           <h4>Sutartis db3</h4>
-          <table>
-            <tr>
+          <Table>
+            <TR>
               <th>Id</th>
               <th>Kaina</th>
               <th>Nuomos pabaiga</th>
               <th>Uzsakovo id</th>
-            </tr>
+              <th></th>
+              <th></th>
+            </TR>
             {thirdData &&
               thirdData.Sutartis.map((sutartis, index) => (
-                <tr>
+                <TR>
                   <td>{index}</td>
                   <td>{sutartis.kaina}</td>
                   <td>{sutartis.nuomos_pabaiga}</td>
                   <td>{sutartis.uzsakovo_id}</td>
-                </tr>
+                  <td>
+                    <Button backgroundColor="#D7D134">
+                      {" "}
+                      <ButtonLabel>Redaguoti</ButtonLabel>{" "}
+                    </Button>
+                  </td>
+                  <td>
+                    <Button backgroundColor="red">
+                      {" "}
+                      <ButtonLabel>Trinti</ButtonLabel>{" "}
+                    </Button>
+                  </td>
+                </TR>
               ))}
-          </table>
+          </Table>
         </div>
         <div>
           <h4>Sutartis db4</h4>
-          <table>
-            <tr>
+          <Table>
+            <TR>
               <th>Id</th>
               <th>Data</th>
               <th>Kaina</th>
               <th>Nuomos pradzia</th>
               <th>Nuomos pabaiga</th>
-            </tr>
+              <th></th>
+              <th></th>
+            </TR>
             {fourthData &&
               fourthData.Sutartis.map((sutartis, index) => (
-                <tr>
+                <TR>
                   <td>{index}</td>
                   <td>{sutartis.data}</td>
                   <td>{sutartis.kaina}</td>
                   <td>{sutartis.nuomos_pradzia}</td>
                   <td>{sutartis.nuomos_pabaiga}</td>
-                </tr>
+                  <td>
+                    <Button backgroundColor="#D7D134">
+                      {" "}
+                      <ButtonLabel>Redaguoti</ButtonLabel>{" "}
+                    </Button>
+                  </td>
+                  <td>
+                    <Button backgroundColor="red">
+                      {" "}
+                      <ButtonLabel>Trinti</ButtonLabel>{" "}
+                    </Button>
+                  </td>
+                </TR>
               ))}
-          </table>
+          </Table>
         </div>
       </Row>
-
-      <h1>Automobiliai</h1>
-      <table>
-        <tr>
-          <th>Id</th>
-          <th>kebulo tipas</th>
-          <th>kuro tipas</th>
-          <th>vietu skaicius</th>
-          <th>pavaru deze</th>
-        </tr>
-        {data &&
-          data.Automobilis.map((automobilis, index) => (
-            <tr>
-              <td>{index}</td>
-              <td>{automobilis.kebulo_tipas}</td>
-              <td>{automobilis.kuro_tipas}</td>
-              <td>{automobilis.vietu_skaicius}</td>
-              <td>{automobilis.pavaru_deze}</td>
-            </tr>
-          ))}
-      </table>
-    </div>
+    </AppContainer>
   );
 }
 
