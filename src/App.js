@@ -2,6 +2,15 @@ import logo from "./logo.svg";
 import "./App.css";
 import firebase from "./firebase";
 import { useState, useEffect } from "react";
+import styled from "styled-components";
+
+const Row = styled.div`
+  display: flex;
+  justify-content: space-between;
+  table {
+    margin-right: 10px;
+  }
+`;
 
 function App() {
   const db1 = firebase.db1.database().ref("/DB_1");
@@ -26,42 +35,48 @@ function App() {
   console.log("second data", secondData);
   return (
     <div className="App">
-      <h1>Sutartis db1</h1>
-      <table>
-        <tr>
-          <th>Id</th>
-          <th>Kaina</th>
-          <th>Nuomos pabaiga</th>
-          <th>Uzsakovo id</th>
-        </tr>
-        {data &&
-          data.Sutartis.map((sutartis, index) => (
+      <Row>
+        <div>
+          <h4>Sutartis db1</h4>
+          <table>
             <tr>
-              <td>{index}</td>
-              <td>{sutartis.kaina}</td>
-              <td>{sutartis.nuomos_pabaiga}</td>
-              <td>{sutartis.uzsakovo_id}</td>
+              <th>Id</th>
+              <th>Kaina</th>
+              <th>Nuomos pabaiga</th>
+              <th>Uzsakovo id</th>
             </tr>
-          ))}
-      </table>
-      <h1>Sutartis db3</h1>
-      <table>
-        <tr>
-          <th>Id</th>
-          <th>Kaina</th>
-          <th>Nuomos pabaiga</th>
-          <th>Uzsakovo id</th>
-        </tr>
-        {secondData &&
-          secondData.Sutartis.map((sutartis, index) => (
+            {data &&
+              data.Sutartis.map((sutartis, index) => (
+                <tr>
+                  <td>{index}</td>
+                  <td>{sutartis.kaina}</td>
+                  <td>{sutartis.nuomos_pabaiga}</td>
+                  <td>{sutartis.uzsakovo_id}</td>
+                </tr>
+              ))}
+          </table>
+        </div>
+        <div>
+          <h4>Sutartis db3</h4>
+          <table>
             <tr>
-              <td>{index}</td>
-              <td>{sutartis.kaina}</td>
-              <td>{sutartis.nuomos_pabaiga}</td>
-              <td>{sutartis.uzsakovo_id}</td>
+              <th>Id</th>
+              <th>Kaina</th>
+              <th>Nuomos pabaiga</th>
+              <th>Uzsakovo id</th>
             </tr>
-          ))}
-      </table>
+            {secondData &&
+              secondData.Sutartis.map((sutartis, index) => (
+                <tr>
+                  <td>{index}</td>
+                  <td>{sutartis.kaina}</td>
+                  <td>{sutartis.nuomos_pabaiga}</td>
+                  <td>{sutartis.uzsakovo_id}</td>
+                </tr>
+              ))}
+          </table>
+        </div>
+      </Row>
 
       <h1>Automobilis</h1>
       <table>
