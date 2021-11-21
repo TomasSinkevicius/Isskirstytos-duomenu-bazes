@@ -6,25 +6,32 @@ import { Row, Form, GridDiv } from "../StyleFiles/Table.style";
 import { Button } from "../StyleFiles/Button.style";
 
 export default function Create() {
-  const [kaina, setKaina] = useState("");
-  const [nuomos_pabaiga, setPabaiga] = useState("");
-  const [uzsakovo_id, setID] = useState("");
+  const [sutartiesDetails, setSutartiesDetails] = useState({
+    kaina: "",
+    nuomos_pabaiga: "",
+    uzsakovo_id: "",
+  });
 
-  const HandleOnChange = (e) => {
-    setKaina(e.target.value);
-    setPabaiga(e.target.value);
-    setID(e.target.value);
+  const handleOnChange = (e) => {
+    const{ name ,value } = e.target;
+    setSutartiesDetails((prev) => {
+      return { ...prev, [name]:value};
+    });
   };
 
-  const create = () => {
-    const ref = firebase.database().ref("DB_1/Sutartis");
-    const data = {
-      kaina,
-      nuomos_pabaiga,
-      uzsakovo_id,
-    };
+  const create = (e) => {
+    e.preventDefault();
 
-    ref.push(data);
+    let formData = new FormData();
+    formData.append("kaina", sutartiesDetails.kaina);
+    formData.append("nuomos_pabaiga", sutartiesDetails.nuomos_pabaiga);
+    formData.append("uzsakovo_id", sutartiesDetails.uzsakovo_id);
+
+    const ref = firebase.db1.database().ref("DB_1/Sutartis");
+    
+    console.log(sutartiesDetails);
+
+    ref.push(sutartiesDetails);
   };
   return (
     <AppContainer>
@@ -44,20 +51,20 @@ export default function Create() {
               <input
                 type="number"
                 name="kaina"
-                onChange={HandleOnChange}
-                value={kaina}
+                onChange={handleOnChange}
+                initialvalue=""
               ></input>
               <input
                 type="date"
-                name="pabaiga"
-                onChange={HandleOnChange}
-                value={nuomos_pabaiga}
+                name="nuomos_pabaiga"
+                onChange={handleOnChange}
+                initialvalue=""
               ></input>
               <input
                 type="text"
-                name="id"
-                onChange={HandleOnChange}
-                value={uzsakovo_id}
+                name="uzsakovo_id"
+                onChange={handleOnChange}
+                initialvalue=""
               ></input>
             </GridDiv>
           </Form>
