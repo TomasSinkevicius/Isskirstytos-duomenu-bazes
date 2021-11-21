@@ -14,8 +14,8 @@ const Row = styled.div`
 function App() {
   const db1 = firebase.db1.database().ref("/DB_1");
   const db2 = firebase.db1.database().ref("/DB_2");
-  const db3 = firebase.db1.database().ref("/DB_3");
-  const db4 = firebase.db2.database().ref("/DB_3");
+  const db3 = firebase.db2.database().ref("/DB_3");
+  const db4 = firebase.db2.database().ref("/DB_4");
   const [data, setData] = useState("");
   const [secondData, setSecondData] = useState("");
   const [thirdData, setThirdData] = useState("");
@@ -44,6 +44,8 @@ function App() {
   }, []);
   console.log("first data", data);
   console.log("second data", secondData);
+  console.log("third data", thirdData);
+  console.log("fourth data", fourthData);
   return (
     <div className="App">
       <Row>
@@ -83,7 +85,7 @@ function App() {
                   <td>{index}</td>
                   <td>{sutartis.data}</td>
                   <td>{sutartis.kaina}</td>
-                  <td>{sutartis.pradzia}</td>
+                  <td>{sutartis.nuomos_pradzia}</td>
                   <td>{sutartis.nuomos_pabaiga}</td>
                 </tr>
               ))}
@@ -125,7 +127,7 @@ function App() {
                   <td>{index}</td>
                   <td>{sutartis.data}</td>
                   <td>{sutartis.kaina}</td>
-                  <td>{sutartis.pradzia}</td>
+                  <td>{sutartis.nuomos_pradzia}</td>
                   <td>{sutartis.nuomos_pabaiga}</td>
                 </tr>
               ))}
@@ -133,7 +135,7 @@ function App() {
         </div>
       </Row>
 
-      <h1>Automobilis</h1>
+      <h1>Automobiliai</h1>
       <table>
         <tr>
           <th>Id</th>
