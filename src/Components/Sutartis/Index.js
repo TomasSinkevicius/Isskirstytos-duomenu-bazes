@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { Row, Table, TR } from "../StyleFiles/Table.style";
 import { Button, ButtonLabel, NavLink } from "../StyleFiles/Button.style";
 import { AppContainer, BtnDiv } from "../StyleFiles/Container.style";
-import Create from "./Create";
 
 function Index() {
   const db1 = firebase.db1.database().ref("/DB_1");

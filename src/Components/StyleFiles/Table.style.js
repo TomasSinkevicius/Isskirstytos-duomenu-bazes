@@ -22,3 +22,15 @@ export const TR = styled.tr`
   color: #ffffff;
   text-align: left;
 `;
+
+export const Form = styled.form`
+  width: 20%;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+export const GridDiv = styled.div`
+  display: grid;
+  padding: 10px;
+  align-self: center;
+`;
