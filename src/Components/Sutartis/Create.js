@@ -13,9 +13,9 @@ export default function Create() {
   });
 
   const handleOnChange = (e) => {
-    const{ name ,value } = e.target;
+    const { name, value } = e.target;
     setSutartiesDetails((prev) => {
-      return { ...prev, [name]:value};
+      return { ...prev, [name]: value };
     });
   };
 
@@ -28,7 +28,7 @@ export default function Create() {
     formData.append("uzsakovo_id", sutartiesDetails.uzsakovo_id);
 
     const ref = firebase.db1.database().ref("DB_1/Sutartis");
-    
+
     console.log(sutartiesDetails);
 
     ref.push(sutartiesDetails);

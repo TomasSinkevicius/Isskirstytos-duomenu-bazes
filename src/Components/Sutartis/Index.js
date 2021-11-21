@@ -41,162 +41,163 @@ function Index() {
   console.log("third data", thirdData);
   console.log("fourth data", fourthData);
 
-  const deleteData = () =>{
+  const deleteData = () => {
     //const ref = firebase.db1.database().ref("DB_1/Sutartis").child(sutartis.index);
     //ref.remove();
-
   };
   return (
-        <AppContainer>
-          <BtnDiv>
-            <Button><NavLink to="/Create">Prideti</NavLink></Button>
-          </BtnDiv>
-          <Row>
-            <div>
-              <h4>Sutartis db1</h4>
-              <Table>
+    <AppContainer>
+      <BtnDiv>
+        <Button>
+          <NavLink to="/Create">Prideti</NavLink>
+        </Button>
+      </BtnDiv>
+      <Row>
+        <div>
+          <h4>Sutartis db1</h4>
+          <Table>
+            <TR>
+              <th>Id</th>
+              <th>Kaina</th>
+              <th>Nuomos pabaiga</th>
+              <th>Uzsakovo id</th>
+              <th></th>
+              <th></th>
+            </TR>
+            {data &&
+              Object.values(data.Sutartis).map((sutartis, index) => (
                 <TR>
-                  <th>Id</th>
-                  <th>Kaina</th>
-                  <th>Nuomos pabaiga</th>
-                  <th>Uzsakovo id</th>
-                  <th></th>
-                  <th></th>
+                  <td>{index}</td>
+                  <td>{sutartis.kaina}</td>
+                  <td>{sutartis.nuomos_pabaiga}</td>
+                  <td>{sutartis.uzsakovo_id}</td>
+                  <td>
+                    <Button backgroundColor="#D7D134" onClick={deleteData}>
+                      {" "}
+                      <ButtonLabel>Redaguoti</ButtonLabel>{" "}
+                    </Button>
+                  </td>
+                  <td>
+                    <Button backgroundColor="red">
+                      {" "}
+                      <ButtonLabel>Trinti</ButtonLabel>{" "}
+                    </Button>
+                  </td>
                 </TR>
-                {data &&
-                  data.Sutartis.map((sutartis, index) => (
-                    <TR>
-                      <td>{index}</td>
-                      <td>{sutartis.kaina}</td>
-                      <td>{sutartis.nuomos_pabaiga}</td>
-                      <td>{sutartis.uzsakovo_id}</td>
-                      <td>
-                        <Button backgroundColor="#D7D134" onClick={deleteData}>
-                          {" "}
-                          <ButtonLabel>Redaguoti</ButtonLabel>{" "}
-                        </Button>
-                      </td>
-                      <td>
-                        <Button backgroundColor="red">
-                          {" "}
-                          <ButtonLabel>Trinti</ButtonLabel>{" "}
-                        </Button>
-                      </td>
-                    </TR>
-                  ))}
-              </Table>
-            </div>
-            <div>
-              <h4>Sutartis db2</h4>
-              <Table>
+              ))}
+          </Table>
+        </div>
+        <div>
+          <h4>Sutartis db2</h4>
+          <Table>
+            <TR>
+              <th>Id</th>
+              <th>Data</th>
+              <th>Kaina</th>
+              <th>Nuomos pradzia</th>
+              <th>Nuomos pabaiga</th>
+              <th></th>
+              <th></th>
+            </TR>
+            {secondData &&
+              secondData.Sutartis.map((sutartis, index) => (
                 <TR>
-                  <th>Id</th>
-                  <th>Data</th>
-                  <th>Kaina</th>
-                  <th>Nuomos pradzia</th>
-                  <th>Nuomos pabaiga</th>
-                  <th></th>
-                  <th></th>
+                  <td>{index}</td>
+                  <td>{sutartis.data}</td>
+                  <td>{sutartis.kaina}</td>
+                  <td>{sutartis.nuomos_pradzia}</td>
+                  <td>{sutartis.nuomos_pabaiga}</td>
+                  <td>
+                    <Button backgroundColor="#D7D134">
+                      {" "}
+                      <ButtonLabel>Redaguoti</ButtonLabel>{" "}
+                    </Button>
+                  </td>
+                  <td>
+                    <Button backgroundColor="red">
+                      {" "}
+                      <ButtonLabel>Trinti</ButtonLabel>{" "}
+                    </Button>
+                  </td>
                 </TR>
-                {secondData &&
-                  secondData.Sutartis.map((sutartis, index) => (
-                    <TR>
-                      <td>{index}</td>
-                      <td>{sutartis.data}</td>
-                      <td>{sutartis.kaina}</td>
-                      <td>{sutartis.nuomos_pradzia}</td>
-                      <td>{sutartis.nuomos_pabaiga}</td>
-                      <td>
-                        <Button backgroundColor="#D7D134">
-                          {" "}
-                          <ButtonLabel>Redaguoti</ButtonLabel>{" "}
-                        </Button>
-                      </td>
-                      <td>
-                        <Button backgroundColor="red">
-                          {" "}
-                          <ButtonLabel>Trinti</ButtonLabel>{" "}
-                        </Button>
-                      </td>
-                    </TR>
-                  ))}
-              </Table>
-            </div>
-          </Row>
-          <Row>
-            <div>
-              <h4>Sutartis db3</h4>
-              <Table>
+              ))}
+          </Table>
+        </div>
+      </Row>
+      <Row>
+        <div>
+          <h4>Sutartis db3</h4>
+          <Table>
+            <TR>
+              <th>Id</th>
+              <th>Kaina</th>
+              <th>Nuomos pabaiga</th>
+              <th>Uzsakovo id</th>
+              <th></th>
+              <th></th>
+            </TR>
+            {thirdData &&
+              thirdData.Sutartis.map((sutartis, index) => (
                 <TR>
-                  <th>Id</th>
-                  <th>Kaina</th>
-                  <th>Nuomos pabaiga</th>
-                  <th>Uzsakovo id</th>
-                  <th></th>
-                  <th></th>
+                  <td>{index}</td>
+                  <td>{sutartis.kaina}</td>
+                  <td>{sutartis.nuomos_pabaiga}</td>
+                  <td>{sutartis.uzsakovo_id}</td>
+                  <td>
+                    <Button backgroundColor="#D7D134">
+                      {" "}
+                      <ButtonLabel>Redaguoti</ButtonLabel>{" "}
+                    </Button>
+                  </td>
+                  <td>
+                    <Button backgroundColor="red">
+                      {" "}
+                      <ButtonLabel>Trinti</ButtonLabel>{" "}
+                    </Button>
+                  </td>
                 </TR>
-                {thirdData &&
-                  thirdData.Sutartis.map((sutartis, index) => (
-                    <TR>
-                      <td>{index}</td>
-                      <td>{sutartis.kaina}</td>
-                      <td>{sutartis.nuomos_pabaiga}</td>
-                      <td>{sutartis.uzsakovo_id}</td>
-                      <td>
-                        <Button backgroundColor="#D7D134">
-                          {" "}
-                          <ButtonLabel>Redaguoti</ButtonLabel>{" "}
-                        </Button>
-                      </td>
-                      <td>
-                        <Button backgroundColor="red">
-                          {" "}
-                          <ButtonLabel>Trinti</ButtonLabel>{" "}
-                        </Button>
-                      </td>
-                    </TR>
-                  ))}
-              </Table>
-            </div>
-            <div>
-              <h4>Sutartis db4</h4>
-              <Table>
+              ))}
+          </Table>
+        </div>
+        <div>
+          <h4>Sutartis db4</h4>
+          <Table>
+            <TR>
+              <th>Id</th>
+              <th>Data</th>
+              <th>Kaina</th>
+              <th>Nuomos pradzia</th>
+              <th>Nuomos pabaiga</th>
+              <th></th>
+              <th></th>
+            </TR>
+            {fourthData &&
+              fourthData.Sutartis.map((sutartis, index) => (
                 <TR>
-                  <th>Id</th>
-                  <th>Data</th>
-                  <th>Kaina</th>
-                  <th>Nuomos pradzia</th>
-                  <th>Nuomos pabaiga</th>
-                  <th></th>
-                  <th></th>
+                  <td>{index}</td>
+                  <td>{sutartis.data}</td>
+                  <td>{sutartis.kaina}</td>
+                  <td>{sutartis.nuomos_pradzia}</td>
+                  <td>{sutartis.nuomos_pabaiga}</td>
+                  <td>
+                    <Button backgroundColor="#D7D134">
+                      {" "}
+                      <ButtonLabel>Redaguoti</ButtonLabel>{" "}
+                    </Button>
+                  </td>
+                  <td>
+                    <Button backgroundColor="red">
+                      {" "}
+                      <ButtonLabel>Trinti</ButtonLabel>{" "}
+                    </Button>
+                  </td>
                 </TR>
-                {fourthData &&
-                  fourthData.Sutartis.map((sutartis, index) => (
-                    <TR>
-                      <td>{index}</td>
-                      <td>{sutartis.data}</td>
-                      <td>{sutartis.kaina}</td>
-                      <td>{sutartis.nuomos_pradzia}</td>
-                      <td>{sutartis.nuomos_pabaiga}</td>
-                      <td>
-                        <Button backgroundColor="#D7D134">
-                          {" "}
-                          <ButtonLabel>Redaguoti</ButtonLabel>{" "}
-                        </Button>
-                      </td>
-                      <td>
-                        <Button backgroundColor="red">
-                          {" "}
-                          <ButtonLabel>Trinti</ButtonLabel>{" "}
-                        </Button>
-                      </td>
-                    </TR>
-                  ))}
-              </Table>
-            </div>
-          </Row>
-        </AppContainer>
+              ))}
+          </Table>
+        </div>
+      </Row>
+    </AppContainer>
   );
-};
+}
 
 export default Index;
