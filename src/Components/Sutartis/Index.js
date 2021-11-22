@@ -3,8 +3,10 @@ import { useState, useEffect } from "react";
 import { Row, Table, TR } from "../StyleFiles/Table.style";
 import { Button, ButtonLabel, NavLink } from "../StyleFiles/Button.style";
 import { AppContainer, BtnDiv } from "../StyleFiles/Container.style";
+import { Edit } from "../edit";
 
 function Index() {
+  const [visible, setVisible] = useState({ visible: false, database: 0 });
   const db1 = firebase.db1.database().ref("/DB_1");
   const db2 = firebase.db1.database().ref("/DB_2");
   const db3 = firebase.db2.database().ref("/DB_3");
@@ -65,13 +67,41 @@ function Index() {
   console.log("third data", thirdData);
   console.log("fourth data", fourthData);
 
-  const deleteData = (id) => {
-    console.log(id);
-    const ref = firebase.db1.database().ref("DB_1/Sutartis").child(id);
-    ref.remove();
+  const deleteData = (id, databaseNumber) => {
+    console.log("id", id);
+    console.log("db id", databaseNumber);
+
+    switch (databaseNumber) {
+      case 1:
+        // code block
+        const ref1 = firebase.db1.database().ref("DB_1/Sutartis").child(id);
+        const ref2 = firebase.db1.database().ref("DB_2/Sutartis").child(id);
+        ref1.remove();
+        ref2.remove();
+        break;
+      case 2:
+        const ref3 = firebase.db2.database().ref("DB_3/Sutartis").child(id);
+        const ref4 = firebase.db2.database().ref("DB_4/Sutartis").child(id);
+        ref3.remove();
+        ref4.remove();
+        break;
+
+      default:
+    }
   };
+
+  console.log(visible);
+
   return (
     <AppContainer>
+      {visible.visible && (
+        <Edit
+          visible={visible}
+          setVisible={setVisible}
+          data={data}
+          thirdData={thirdData}
+        />
+      )}
       <BtnDiv>
         <Button>
           <NavLink to="/Create">Prideti</NavLink>
@@ -99,13 +129,24 @@ function Index() {
                   <td>
                     <Button backgroundColor="#D7D134">
                       {" "}
-                      <ButtonLabel>Redaguoti</ButtonLabel>{" "}
+                      <ButtonLabel
+                        onClick={() =>
+                          setVisible({
+                            visible: true,
+                            database: 1,
+                            tableType: 1,
+                            data: sutartis,
+                          })
+                        }
+                      >
+                        Redaguoti
+                      </ButtonLabel>{" "}
                     </Button>
                   </td>
                   <td>
                     <Button backgroundColor="red">
                       {" "}
-                      <ButtonLabel onClick={() => deleteData(sutartis.id)}>
+                      <ButtonLabel onClick={() => deleteData(sutartis.id, 1)}>
                         Trinti
                       </ButtonLabel>{" "}
                     </Button>
@@ -137,13 +178,26 @@ function Index() {
                   <td>
                     <Button backgroundColor="#D7D134">
                       {" "}
-                      <ButtonLabel>Redaguoti</ButtonLabel>{" "}
+                      <ButtonLabel
+                        onClick={() =>
+                          setVisible({
+                            visible: true,
+                            database: 1,
+                            tableType: 2,
+                            data: sutartis,
+                          })
+                        }
+                      >
+                        Redaguoti
+                      </ButtonLabel>{" "}
                     </Button>
                   </td>
                   <td>
                     <Button backgroundColor="red">
                       {" "}
-                      <ButtonLabel>Trinti</ButtonLabel>{" "}
+                      <ButtonLabel onClick={() => deleteData(sutartis.id, 1)}>
+                        Trinti
+                      </ButtonLabel>{" "}
                     </Button>
                   </td>
                 </TR>
@@ -173,13 +227,26 @@ function Index() {
                   <td>
                     <Button backgroundColor="#D7D134">
                       {" "}
-                      <ButtonLabel>Redaguoti</ButtonLabel>{" "}
+                      <ButtonLabel
+                        onClick={() =>
+                          setVisible({
+                            visible: true,
+                            database: 2,
+                            tableType: 1,
+                            data: sutartis,
+                          })
+                        }
+                      >
+                        Redaguoti
+                      </ButtonLabel>{" "}
                     </Button>
                   </td>
                   <td>
                     <Button backgroundColor="red">
                       {" "}
-                      <ButtonLabel>Trinti</ButtonLabel>{" "}
+                      <ButtonLabel onClick={() => deleteData(sutartis.id, 2)}>
+                        Trinti
+                      </ButtonLabel>{" "}
                     </Button>
                   </td>
                 </TR>
@@ -209,13 +276,26 @@ function Index() {
                   <td>
                     <Button backgroundColor="#D7D134">
                       {" "}
-                      <ButtonLabel>Redaguoti</ButtonLabel>{" "}
+                      <ButtonLabel
+                        onClick={() =>
+                          setVisible({
+                            visible: true,
+                            database: 2,
+                            tableType: 2,
+                            data: sutartis,
+                          })
+                        }
+                      >
+                        Redaguoti
+                      </ButtonLabel>{" "}
                     </Button>
                   </td>
                   <td>
                     <Button backgroundColor="red">
                       {" "}
-                      <ButtonLabel>Trinti</ButtonLabel>{" "}
+                      <ButtonLabel onClick={() => deleteData(sutartis.id, 2)}>
+                        Trinti
+                      </ButtonLabel>{" "}
                     </Button>
                   </td>
                 </TR>

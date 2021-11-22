@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import { Link } from "react-router-dom";
 import firebase from "../../firebase";
 import { AppContainer, BtnDiv } from "../StyleFiles/Container.style";
@@ -6,6 +7,62 @@ import { Row, Form, GridDiv } from "../StyleFiles/Table.style";
 import { Button } from "../StyleFiles/Button.style";
 
 export default function Create() {
+  const db1 = firebase.db1.database().ref("/DB_1");
+  const db2 = firebase.db1.database().ref("/DB_2");
+  const db3 = firebase.db2.database().ref("/DB_3");
+  const db4 = firebase.db2.database().ref("/DB_4");
+  const [data, setData] = useState("");
+  const [secondData, setSecondData] = useState("");
+  const [thirdData, setThirdData] = useState("");
+  const [fourthData, setFourthData] = useState("");
+  const [loading, setLoading] = useState("");
+
+  const getData = () => {
+    db1.on("value", function (snapshot) {
+      const todos = snapshot.val();
+      const todoList = [];
+      for (let id in todos.Sutartis) {
+        todoList.push({ id, ...todos.Sutartis[id] });
+      }
+      const obj = todos;
+      obj.Sutartis = todoList;
+      setData(obj);
+    });
+    db2.on("value", function (snapshot) {
+      const todos = snapshot.val();
+      const todoList = [];
+      for (let id in todos.Sutartis) {
+        todoList.push({ id, ...todos.Sutartis[id] });
+      }
+      const obj = todos;
+      obj.Sutartis = todoList;
+      setSecondData(obj);
+    });
+    db3.on("value", function (snapshot) {
+      const todos = snapshot.val();
+      const todoList = [];
+      for (let id in todos.Sutartis) {
+        todoList.push({ id, ...todos.Sutartis[id] });
+      }
+      const obj = todos;
+      obj.Sutartis = todoList;
+      setThirdData(obj);
+    });
+    db4.on("value", function (snapshot) {
+      const todos = snapshot.val();
+      const todoList = [];
+      for (let id in todos.Sutartis) {
+        todoList.push({ id, ...todos.Sutartis[id] });
+      }
+      const obj = todos;
+      obj.Sutartis = todoList;
+      setFourthData(obj);
+    });
+  };
+  useEffect(() => {
+    getData();
+  }, []);
+
   const [sutartiesDetails, setSutartiesDetails] = useState({
     kaina: "",
     nuomos_pabaiga: "",
@@ -16,7 +73,6 @@ export default function Create() {
   let [date, setDate] = useState(
     today.getMonth() + 1 + "/" + today.getDate() + "/" + today.getFullYear()
   );
-  console.log(date);
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -46,14 +102,19 @@ export default function Create() {
     if (sutartiesDetails.kaina < 500) {
       const ref1 = firebase.db1.database().ref("DB_1/Sutartis");
       const ref2 = firebase.db1.database().ref("DB_2/Sutartis");
-      ref1.push(firstData);
-      ref2.push(secondData);
+
+      console.log("ilgis", data.Sutartis.length);
+      ref1.child(data.Sutartis.length + 1).update(firstData);
+      ref2.child(data.Sutartis.length + 1).update(secondData);
+
       console.log(sutartiesDetails);
     } else {
       const ref1 = firebase.db2.database().ref("DB_3/Sutartis");
       const ref2 = firebase.db2.database().ref("DB_4/Sutartis");
-      ref1.push(firstData);
-      ref2.push(secondData);
+
+      ref1.child(thirdData.Sutartis.length + 1).update(firstData);
+      ref2.child(thirdData.Sutartis.length + 1).update(secondData);
+
       console.log(sutartiesDetails);
     }
   };
