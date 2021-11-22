@@ -15,6 +15,10 @@ export const Table = styled.table`
   font-family: sans-serif;
   min-width: 400px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+  td {
+    border: 1px solid black;
+  }
 `;
 
 export const TR = styled.tr`
