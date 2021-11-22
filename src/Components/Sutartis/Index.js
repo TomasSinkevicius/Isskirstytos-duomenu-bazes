@@ -17,20 +17,44 @@ function Index() {
 
   const getData = () => {
     db1.on("value", function (snapshot) {
-      setData(snapshot.val());
-      setLoading(true);
+      const todos = snapshot.val();
+      const todoList = [];
+      for (let id in todos.Sutartis) {
+        todoList.push({ id, ...todos.Sutartis[id] });
+      }
+      const obj = todos;
+      obj.Sutartis = todoList;
+      setData(obj);
     });
     db2.on("value", function (snapshot) {
-      setSecondData(snapshot.val());
-      setLoading(true);
+      const todos = snapshot.val();
+      const todoList = [];
+      for (let id in todos.Sutartis) {
+        todoList.push({ id, ...todos.Sutartis[id] });
+      }
+      const obj = todos;
+      obj.Sutartis = todoList;
+      setSecondData(obj);
     });
     db3.on("value", function (snapshot) {
-      setThirdData(snapshot.val());
-      setLoading(true);
+      const todos = snapshot.val();
+      const todoList = [];
+      for (let id in todos.Sutartis) {
+        todoList.push({ id, ...todos.Sutartis[id] });
+      }
+      const obj = todos;
+      obj.Sutartis = todoList;
+      setThirdData(obj);
     });
     db4.on("value", function (snapshot) {
-      setFourthData(snapshot.val());
-      setLoading(true);
+      const todos = snapshot.val();
+      const todoList = [];
+      for (let id in todos.Sutartis) {
+        todoList.push({ id, ...todos.Sutartis[id] });
+      }
+      const obj = todos;
+      obj.Sutartis = todoList;
+      setFourthData(obj);
     });
   };
   useEffect(() => {
@@ -41,9 +65,10 @@ function Index() {
   console.log("third data", thirdData);
   console.log("fourth data", fourthData);
 
-  const deleteData = () => {
-    //const ref = firebase.db1.database().ref("DB_1/Sutartis").child(sutartis.index);
-    //ref.remove();
+  const deleteData = (id) => {
+    console.log(id);
+    const ref = firebase.db1.database().ref("DB_1/Sutartis").child(id);
+    ref.remove();
   };
   return (
     <AppContainer>
@@ -72,7 +97,7 @@ function Index() {
                   <td>{sutartis.nuomos_pabaiga}</td>
                   <td>{sutartis.uzsakovo_id}</td>
                   <td>
-                    <Button backgroundColor="#D7D134" onClick={deleteData}>
+                    <Button backgroundColor="#D7D134">
                       {" "}
                       <ButtonLabel>Redaguoti</ButtonLabel>{" "}
                     </Button>
@@ -80,7 +105,9 @@ function Index() {
                   <td>
                     <Button backgroundColor="red">
                       {" "}
-                      <ButtonLabel>Trinti</ButtonLabel>{" "}
+                      <ButtonLabel onClick={() => deleteData(sutartis.id)}>
+                        Trinti
+                      </ButtonLabel>{" "}
                     </Button>
                   </td>
                 </TR>
@@ -100,7 +127,7 @@ function Index() {
               <th></th>
             </TR>
             {secondData &&
-              secondData.Sutartis.map((sutartis, index) => (
+              Object.values(secondData.Sutartis).map((sutartis, index) => (
                 <TR>
                   <td>{index}</td>
                   <td>{sutartis.data}</td>
@@ -137,7 +164,7 @@ function Index() {
               <th></th>
             </TR>
             {thirdData &&
-              thirdData.Sutartis.map((sutartis, index) => (
+              Object.values(thirdData.Sutartis).map((sutartis, index) => (
                 <TR>
                   <td>{index}</td>
                   <td>{sutartis.kaina}</td>
@@ -172,7 +199,7 @@ function Index() {
               <th></th>
             </TR>
             {fourthData &&
-              fourthData.Sutartis.map((sutartis, index) => (
+              Object.values(fourthData.Sutartis).map((sutartis, index) => (
                 <TR>
                   <td>{index}</td>
                   <td>{sutartis.data}</td>
