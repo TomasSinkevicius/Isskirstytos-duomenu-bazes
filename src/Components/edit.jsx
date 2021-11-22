@@ -24,14 +24,14 @@ export const Edit = ({ visible, setVisible, data, thirdData }) => {
     });
   };
   const [sutartiesDetails, setSutartiesDetails] = useState({
-    kaina: visible.data.kaina ? visible.data.kaina : null,
+    kaina: visible.data.kaina ? visible.data.kaina : "",
     nuomos_pabaiga: visible.data.nuomos_pabaiga
       ? visible.data.nuomos_pabaiga
-      : null,
+      : "",
     nuomos_pradzia: visible.data.nuomos_pradzia
       ? visible.data.nuomos_pradzia
-      : null,
-    uzsakovo_id: visible.data.uzsakovo_id ? visible.data.uzsakovo_id : null,
+      : "",
+    uzsakovo_id: visible.data.uzsakovo_id ? visible.data.uzsakovo_id : "",
     // kaina: null,
     // nuomos_pabaiga: null,
     // nuomos_pradzia: null,
@@ -50,29 +50,37 @@ export const Edit = ({ visible, setVisible, data, thirdData }) => {
       nuomos_pabaiga: sutartiesDetails.nuomos_pabaiga,
       uzsakovo_id: sutartiesDetails.uzsakovo_id,
     };
+    let firstData1 = {
+      kaina: sutartiesDetails.kaina,
+      nuomos_pabaiga: sutartiesDetails.nuomos_pabaiga,
+    };
     let secondData = {
       data: date,
       kaina: sutartiesDetails.kaina,
       nuomos_pradzia: sutartiesDetails.nuomos_pradzia,
       nuomos_pabaiga: sutartiesDetails.nuomos_pabaiga,
     };
+    let secondData1 = {
+      data: date,
+      kaina: sutartiesDetails.kaina,
+      nuomos_pabaiga: sutartiesDetails.nuomos_pabaiga,
+    };
 
     switch (visible.database) {
       case 1:
-        // code block
-        console.log("first data", firstData);
-        console.log("second", secondData);
         const ref1 = firebase.db1.database().ref("DB_1/Sutartis");
         const ref2 = firebase.db1.database().ref("DB_2/Sutartis");
 
-        console.log("ilgis", data.Sutartis.length);
+        firstData = visible.tableType === 1 ? firstData : firstData1;
+        secondData = visible.tableType === 1 ? secondData1 : secondData;
         ref1.child(visible.data.id).update(firstData);
         ref2.child(visible.data.id).update(secondData);
         break;
       case 2:
         const ref3 = firebase.db2.database().ref("DB_3/Sutartis");
         const ref4 = firebase.db2.database().ref("DB_4/Sutartis");
-
+        firstData = visible.tableType === 1 ? firstData : firstData1;
+        secondData = visible.tableType === 1 ? secondData1 : secondData;
         ref3.child(visible.data.id).update(firstData);
         ref4.child(visible.data.id).update(secondData);
         break;
