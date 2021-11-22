@@ -2,7 +2,7 @@ import firebase from "../../firebase";
 import { useState, useEffect } from "react";
 import { Row, Table, TR } from "../StyleFiles/Table.style";
 import { Button, ButtonLabel, NavLink } from "../StyleFiles/Button.style";
-import { AppContainer, BtnDiv } from "../StyleFiles/Container.style";
+import { AppContainer, BtnDiv, TableName } from "../StyleFiles/Container.style";
 import { Edit } from "../edit";
 
 function Index() {
@@ -109,7 +109,7 @@ function Index() {
       </BtnDiv>
       <Row>
         <div>
-          <h4>Sutartis db1</h4>
+          <TableName>Sutartis db1</TableName>
           <Table>
             <TR>
               <th>Id</th>
@@ -122,12 +122,12 @@ function Index() {
             {data &&
               Object.values(data.Sutartis).map((sutartis, index) => (
                 <TR>
-                  <td>{index}</td>
+                  <td>{sutartis.id}</td>
                   <td>{sutartis.kaina}</td>
                   <td>{sutartis.nuomos_pabaiga}</td>
                   <td>{sutartis.uzsakovo_id}</td>
                   <td>
-                    <Button backgroundColor="#D7D134">
+                    <Button backgroundColor="#EEDC82">
                       {" "}
                       <ButtonLabel
                         onClick={() =>
@@ -144,7 +144,7 @@ function Index() {
                     </Button>
                   </td>
                   <td>
-                    <Button backgroundColor="red">
+                    <Button backgroundColor="#FF4500">
                       {" "}
                       <ButtonLabel onClick={() => deleteData(sutartis.id, 1)}>
                         Trinti
@@ -156,7 +156,7 @@ function Index() {
           </Table>
         </div>
         <div>
-          <h4>Sutartis db2</h4>
+          <TableName>Sutartis db2</TableName>
           <Table>
             <TR>
               <th>Id</th>
@@ -176,7 +176,7 @@ function Index() {
                   <td>{sutartis.nuomos_pradzia}</td>
                   <td>{sutartis.nuomos_pabaiga}</td>
                   <td>
-                    <Button backgroundColor="#D7D134">
+                    <Button backgroundColor="#EEDC82">
                       {" "}
                       <ButtonLabel
                         onClick={() =>
@@ -193,7 +193,7 @@ function Index() {
                     </Button>
                   </td>
                   <td>
-                    <Button backgroundColor="red">
+                    <Button backgroundColor="#FF4500">
                       {" "}
                       <ButtonLabel onClick={() => deleteData(sutartis.id, 1)}>
                         Trinti
@@ -207,7 +207,7 @@ function Index() {
       </Row>
       <Row>
         <div>
-          <h4>Sutartis db3</h4>
+          <TableName>Sutartis db3</TableName>
           <Table>
             <TR>
               <th>Id</th>
@@ -225,7 +225,7 @@ function Index() {
                   <td>{sutartis.nuomos_pabaiga}</td>
                   <td>{sutartis.uzsakovo_id}</td>
                   <td>
-                    <Button backgroundColor="#D7D134">
+                    <Button backgroundColor="#EEDC82">
                       {" "}
                       <ButtonLabel
                         onClick={() =>
@@ -242,7 +242,7 @@ function Index() {
                     </Button>
                   </td>
                   <td>
-                    <Button backgroundColor="red">
+                    <Button backgroundColor="#FF4500">
                       {" "}
                       <ButtonLabel onClick={() => deleteData(sutartis.id, 2)}>
                         Trinti
@@ -254,7 +254,7 @@ function Index() {
           </Table>
         </div>
         <div>
-          <h4>Sutartis db4</h4>
+          <TableName>Sutartis db4</TableName>
           <Table>
             <TR>
               <th>Id</th>
@@ -274,7 +274,7 @@ function Index() {
                   <td>{sutartis.nuomos_pradzia}</td>
                   <td>{sutartis.nuomos_pabaiga}</td>
                   <td>
-                    <Button backgroundColor="#D7D134">
+                    <Button backgroundColor="#EEDC82">
                       {" "}
                       <ButtonLabel
                         onClick={() =>
@@ -291,7 +291,7 @@ function Index() {
                     </Button>
                   </td>
                   <td>
-                    <Button backgroundColor="red">
+                    <Button backgroundColor="#FF4500">
                       {" "}
                       <ButtonLabel onClick={() => deleteData(sutartis.id, 2)}>
                         Trinti

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import firebase from "../../firebase";
 import { AppContainer, BtnDiv } from "../StyleFiles/Container.style";
-import { Row, Form, GridDiv } from "../StyleFiles/Table.style";
+import { Row, Form, GridDiv, INPUT } from "../StyleFiles/Table.style";
 import { Button } from "../StyleFiles/Button.style";
 
 export default function Create() {
@@ -134,34 +134,34 @@ export default function Create() {
           </div>
           <Form>
             <GridDiv>
-              <input
+              <INPUT
                 type="number"
                 name="kaina"
                 onChange={handleOnChange}
                 placeholder="kaina"
                 initialvalue=""
-              ></input>
-              <input
+              ></INPUT>
+              <INPUT
                 type="date"
                 name="nuomos_pradzia"
                 onChange={handleOnChange}
                 placeholder="nuomos pradzia"
                 initialvalue=""
-              ></input>
-              <input
+              ></INPUT>
+              <INPUT
                 type="date"
                 name="nuomos_pabaiga"
                 placeholder="nuomos pabaiga"
                 onChange={handleOnChange}
                 initialvalue=""
-              ></input>
-              <input
+              ></INPUT>
+              <INPUT
                 type="text"
                 name="uzsakovo_id"
                 placeholder="uzsakovo id"
                 onChange={handleOnChange}
                 initialvalue=""
-              ></input>
+              ></INPUT>
             </GridDiv>
           </Form>
         </BtnDiv>

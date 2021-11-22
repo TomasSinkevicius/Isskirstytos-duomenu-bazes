@@ -1,21 +1,16 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { AppContainer, BtnDiv } from "./StyleFiles/Container.style";
-import { Row, Form, GridDiv } from "./StyleFiles/Table.style";
+import {
+  AppContainer,
+  BtnDiv,
+  PopContainer,
+  TableName,
+} from "./StyleFiles/Container.style";
+import { Row, PopForm, GridDiv, INPUT } from "./StyleFiles/Table.style";
 import { Button } from "./StyleFiles/Button.style";
 import { Link } from "react-router-dom";
 import firebase from "../firebase";
 
-const Container = styled.div`
-  width: 400px;
-  height: 400px;
-  background: #afa1a1;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  /* bring your own prefixes */
-  transform: translate(-50%, -50%);
-`;
 export const Edit = ({ visible, setVisible, data, thirdData }) => {
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -90,7 +85,7 @@ export const Edit = ({ visible, setVisible, data, thirdData }) => {
   };
   console.log(sutartiesDetails);
   return (
-    <Container>
+    <PopContainer>
       <button
         onClick={() =>
           setVisible({ visible: false, database: visible.database })
@@ -98,77 +93,75 @@ export const Edit = ({ visible, setVisible, data, thirdData }) => {
       >
         X
       </button>
-      <Row>
+      <BtnDiv>
+        <div className="card-header">
+          <h4>
+            <h1>Sutarties redagavimas</h1>
+          </h4>
+        </div>
+      </BtnDiv>
+      {visible.tableType === 1 ? (
         <BtnDiv>
-          <div className="card-header">
-            <h4>
-              <h1>Sutarties kurimas</h1>
-            </h4>
-          </div>
-          {visible.tableType === 1 ? (
-            <Form>
-              <GridDiv>
-                Kaina
-                <input
-                  type="number"
-                  name="kaina"
-                  onChange={handleOnChange}
-                  placeholder="kaina"
-                  value={sutartiesDetails.kaina}
-                ></input>
-                Nuomos pabaiga
-                <input
-                  type="date"
-                  name="nuomos_pabaiga"
-                  placeholder="nuomos pabaiga"
-                  onChange={handleOnChange}
-                  value={sutartiesDetails.nuomos_pabaiga}
-                ></input>
-                Uzsakovo id
-                <input
-                  type="text"
-                  name="uzsakovo_id"
-                  placeholder="uzsakovo id"
-                  onChange={handleOnChange}
-                  value={sutartiesDetails.uzsakovo_id}
-                ></input>
-              </GridDiv>
-            </Form>
-          ) : (
-            <Form>
-              <GridDiv>
-                Kaina
-                <input
-                  type="number"
-                  name="kaina"
-                  onChange={handleOnChange}
-                  placeholder="kaina"
-                  value={sutartiesDetails.kaina}
-                ></input>
-                Nuomos pradzia
-                <input
-                  type="date"
-                  name="nuomos_pradzia"
-                  onChange={handleOnChange}
-                  placeholder="nuomos pradzia"
-                  value={sutartiesDetails.nuomos_pradzia}
-                ></input>
-                nuomos pabaiga
-                <input
-                  type="date"
-                  name="nuomos_pabaiga"
-                  placeholder="nuomos pabaiga"
-                  onChange={handleOnChange}
-                  value={sutartiesDetails.nuomos_pabaiga}
-                ></input>
-              </GridDiv>
-            </Form>
-          )}
+          <PopForm>
+          Kaina
+            <INPUT
+              type="number"
+              name="kaina"
+              onChange={handleOnChange}
+              placeholder="kaina"
+              value={sutartiesDetails.kaina}
+            ></INPUT>
+            Nuomos pabaiga
+            <INPUT
+              type="date"
+              name="nuomos_pabaiga"
+              placeholder="nuomos pabaiga"
+              onChange={handleOnChange}
+              value={sutartiesDetails.nuomos_pabaiga}
+            ></INPUT>
+            Uzsakovo id
+            <INPUT
+              type="text"
+              name="uzsakovo_id"
+              placeholder="uzsakovo id"
+              onChange={handleOnChange}
+              value={sutartiesDetails.uzsakovo_id}
+            ></INPUT>
+          </PopForm>
         </BtnDiv>
-      </Row>
+      ) : (
+        <BtnDiv>
+          <PopForm>
+            Kaina
+            <INPUT
+              type="number"
+              name="kaina"
+              onChange={handleOnChange}
+              placeholder="kaina"
+              value={sutartiesDetails.kaina}
+            ></INPUT>
+            Nuomos pradzia
+            <INPUT
+              type="date"
+              name="nuomos_pradzia"
+              onChange={handleOnChange}
+              placeholder="nuomos pradzia"
+              value={sutartiesDetails.nuomos_pradzia}
+            ></INPUT>
+            nuomos pabaiga
+            <INPUT
+              type="date"
+              name="nuomos_pabaiga"
+              placeholder="nuomos pabaiga"
+              onChange={handleOnChange}
+              value={sutartiesDetails.nuomos_pabaiga}
+            ></INPUT>
+          </PopForm>
+        </BtnDiv>
+      )}
       <BtnDiv>
         <Button onClick={edit}>Redaguoti</Button>
       </BtnDiv>
-    </Container>
+    </PopContainer>
   );
 };

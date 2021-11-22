@@ -4,7 +4,7 @@ import { NavLink as Link } from "react-router-dom";
 export const Button = styled.button`
   width: 100px;
   height: 30px;
-  color: white;
+  background-color: #8B8970;
   margin: 0 auto;
   text-decoration: none;
   align-items: center;
@@ -20,11 +20,11 @@ export const Button = styled.button`
 
 export const ButtonLabel = styled.a`
   font-size: 18px;
-  color: white;
+  color: black;
 `;
 
 export const NavLink = styled(Link)`
-  color: #fff;
+  color: white;
   display: flex;
   align-items: center;
   text-decoration: none;
